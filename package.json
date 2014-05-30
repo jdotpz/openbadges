@@ -38,6 +38,7 @@
     "node-statsd": "~0.0.7",
     "supervisor": "0.5.6",
     "bunyan": "~0.22.0",
+    "helmet": "0.2.1",
     "xtend": "~2.1.1"
   },
   "engines": {

@@ -7,7 +7,7 @@ generating verifiable badges that users can take with them wherever they go
 and use however they like.
 
 The latest open standard we released can be found in the latest [assertion specification][assertions-latest].
-The assertion includes the open standard, the metadata specification, we defined. 
+The assertion includes the open standard, the metadata specification, we defined.
 
 For more information, check out http://openbadges.org
 
@@ -25,13 +25,13 @@ Usage example:
 1. Generate an assertion (see below) for the user recieving the badge.
 2. Store that assertion at a public-but-secret URL and serve it with
 `content-type: application/json`
-  
+
   * The assertion contains private information about a user, so you want a
     non-predictable URL scheme to prevent automated scraping.
-  
+
   * This URL should be stable - any badge issued from it relies on its
     existence for verification.
-  
+
   * Both of these problems will be solved in the near-term future by
     supporting signed assertions, so you'll only need to expose a URL
     containing your public key.
@@ -121,6 +121,7 @@ and then back in windows you can fire up your favourite browser and connect to t
           password: 'secret',
           database: 'openbadges'
         },
+    Note: Unless you are forcing SSL, do not enable HSTS.
 
 3. Install external tools:
   * [PhantomJS](http://phantomjs.org): We use PhantomJS for running unit tests. On a debian based Linux system you can run `sudo apt-get install phantomjs` to install and run `phantomjs --version` to check it is installed. For other systems you can try [downloading](http://phantomjs.org/download.html) and installing it or [building it from source](http://phantomjs.org/build.html).
@@ -157,7 +158,7 @@ migration. You can do this as follows:
    file preixed with a timestamp in the `migrations` directory.
    Something like the following should be displayed:
 
-       [INFO] Created migration at  
+       [INFO] Created migration at
        migrations/20130213205310-add-issuer-column.js
 
 3. Edit the new JS file as per the [node-db-migrate][] instructions.
@@ -171,12 +172,12 @@ And finally, note that during development, `npm start` automatically runs
 run this command yourself whenever you deploy changes that involve a
 schema change.
 
-If you want to write tests for your migration, check out 
+If you want to write tests for your migration, check out
 `test/migration.test.js` for inspiration.
 
   [node-db-migrate]: https://github.com/nearinfinity/node-db-migrate#creating-migrations
 
-### Production 
+### Production
 
 The codebase behaves slightly differently when run in an environment where
 environment variable `NODE_ENV=production`. These differences include:

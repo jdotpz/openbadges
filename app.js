@@ -6,6 +6,7 @@ if ( process.env.NEW_RELIC_HOME ) {
 
 // Configure & start express.
 var express = require('express');
+var helmet = require('helmet');
 var http = require('http');
 var fs = require('fs');
 var path = require('path');
@@ -20,6 +21,26 @@ var _ = require('underscore');
 var app = express();
 app.logger = logger;
 app.config = configuration;
+
+// Helmet security header options
+var hstsdisabled = app.config.get['HSTS_DISABLED'];
+var disablexfodisabled = app.config.get['DISABLE_XFO_HEADERS_DENY'];
+var iexssdisabled = app.config.get['IEXSS_PROTECTION_DISABLED'];
+
+if (hstsdisabled != 'true') {
+  // Use HSTS
+  app.use(helmet.hsts());
+}
+if (disablexfodisabled != 'true') {
+  // No xframes allowed
+  app.use(helmet.xframe('deny'));
+}
+if (iexssdisabled != 'true') {
+// Use XSS protection
+  app.use(helmet.iexss());
+}
+// Hide that we're using Express
+app.use(helmet.hidePoweredBy());
 
 /* Default values for template variables */
 app.locals({
